@@ -1,0 +1,108 @@
+logging:
+     level:
+       org:
+         springframework:
+           security: INFO
+           boot: 
+               autoconfigure : INFO
+         hibernate:
+           SQL: DEBUG
+           type:
+             descriptor:
+               sql:
+                 BasicBinder: TRACE
+                 
+server:
+  port: 8080
+  servlet:
+      contextPath: /operantic
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+    min-response-size: 1024
+      
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    jdbc-url: jdbc:mysql://127.0.0.1:3306/operanticdb?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    username: joeladjidan
+    password: joeladjidan
+    hikari:
+        connection-test-query: SELECT 1 FROM DUAL
+        minimum-idle: 1
+        maximum-pool-size: 5
+        pool-name: connexion
+        auto-commit: false
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: false
+      
+  jpa:
+    database: MYSQL
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update 
+      properties:
+      format_sql: true
+      show-sql: true
+      
+  mail:
+    host: localhost
+    port: 25
+    username:
+    password:
+  thymeleaf:
+    cache: true
+    
+    spring:
+        rabbitmq:
+            host:localhost
+            port:5672
+            username:guest
+            password:guest
+   
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+      
+      Configuration:
+  status: debug
+
+  appenders:
+    Console:
+      name: LogToConsole
+      PatternLayout:
+        Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+
+    RollingFile:
+      - name: LogToRollingFile
+        fileName: logs/app.log
+        filePattern: "logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz"
+        PatternLayout:
+          pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+        Policies:
+          SizeBasedTriggeringPolicy:
+            size: 10MB
+        DefaultRollOverStrategy:
+          max: 10
+
+  Loggers:
+    logger:
+      - name: net.france
+        level: debug
+        additivity: false
+        AppenderRef:
+          - ref: LogToConsole
+          - ref: LogToRollingFile
+
+    Root:
+      level: error
+      AppenderRef:
+        ref: LogToConsole
+      
+      
+    

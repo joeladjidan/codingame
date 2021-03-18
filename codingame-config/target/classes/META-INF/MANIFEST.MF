@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: joela
+Build-Jdk: 15
+Implementation-Title: codingame-config
+Implementation-Version: 0.0.1
+Implementation-Vendor-Id: net.france.operantic.microservices
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/codingame-parent/codingame-config
+Created-By: Maven Integration for Eclipse
+
