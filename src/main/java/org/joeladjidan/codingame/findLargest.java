@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class findLargest {
 
     /**
-     * Retourne le plus grand nombre dans le tableau.
+     * Retourne le plus grand number dans le tableau.
      * Hypothèse : numbers contient au moins un élément.
      *
      * @param numbers tableau d'entiers
